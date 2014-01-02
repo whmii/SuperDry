@@ -4,8 +4,9 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width">
 		<title>SuperDry 匠 {% block title %}{% endblock %}</title>
-		{{ "app.css" | asset_url | stylesheet_tag }}
-		{{ "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" | script_tag }}
+		{{ 
+		<link rel="stylesheet" type="text/css" href="assets/css/app.css">
+		{{ "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"
 		<!-- TODO: Complete this project :) -->
 	</head>
 	<body>

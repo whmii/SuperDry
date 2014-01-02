@@ -105,8 +105,9 @@ module.exports = function(grunt) {
 
 	require('load-grunt-tasks')(grunt);
 
+
 	grunt.registerTask('default', ['concat', 'uglify', 'sass', 'imagemin']);
 	grunt.registerTask('css', ['sass', 'autoprefixer', 'cssmin']);
-	grunt.registerTask('dev', ['connect', 'watch']);
+	grunt.registerTask('dev', ['liquid','connect', 'watch']);
 
 };
