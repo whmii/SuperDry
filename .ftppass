@@ -1,0 +1,10 @@
+{
+  "key1": {
+    "username": "exampledevelopment-username",
+    "password": "exampledevelopment-password"
+  },
+  "key2": {
+    "username": "exampleproduction-username",
+    "password": "exampleproduction-password"
+  }
+}
