@@ -12,12 +12,9 @@
 /* SITE */
   
   Standards: HTML5, CSS3
-  Components: jQuery, Sass, Autoprefixer
-  Software: Mixture.io, Sublime Text, Transmit, Git
+  Components: jQuery, Sass, Autoprefixer, Assemble, Grunt, Node
+  Software: Sublime Text, Git
 
 
 /* SuperDry was made by Will McMahan @WHMII and derived with portions of Foundation by ZURB and Sassaparilla by fffunction, for Mixture */
 /* mcmahan.me */
-
-/* Mixture. The perfect front-end development tool for Mac & Windows. */
-/* Mixture.io */
