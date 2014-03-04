@@ -9,12 +9,9 @@
 		"name": "Will H McMahan",
 		"url": "http://mcmahan.me"
 	},
-	"licenses": [
-		{
-			"type": "MIT",
-			"url": "https://github.com/gruntjs/grunt-contrib-sass/blob/master/LICENSE-MIT"
-		}
-	],
+	"licenses": {
+		"type": "MIT",
+	},
 	"dependencies": {},
 	"devDependencies": {
 		"grunt": "~0.4.1",
