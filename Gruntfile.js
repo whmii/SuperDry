@@ -11,7 +11,7 @@ module.exports = function(grunt) {
 					style: 'expanded'
 				},
 				files: {
-					'build/assets/css/app.css': 'app/assets/sass/app.scss'
+					'build/assets/css/app.css': 'app/assets/sass/app.sass'
 				}
 			}
 		},
@@ -39,18 +39,6 @@ module.exports = function(grunt) {
 		},
 
 		concat: {
-			jquery: {
-				src: [
-					'app/assets/js/vendor/jquery.js'
-				],
-				dest: 'build/assets/js/vendor/jquery.js'
-			},
-			modernizer: {
-				src: [
-					'app/assets/js/vendor/modernizr.js'
-				],
-				dest: 'build/assets/js/vendor/modernizr.js'
-			},
 			dist: {
 				src: [
 					// Libs if you're lazy
@@ -63,25 +51,6 @@ module.exports = function(grunt) {
 		},
 
 		uglify: {
-			jquery: {
-				src: [
-					'build/assets/js/vendor/jquery.js'
-				],
-				dest: 'build/assets/js/vendor/jquery.min.js'
-			},
-
-			modernizer: {
-				src: [
-					'build/assets/js/vendor/modernizr.js'
-				],
-				dest: 'build/assets/js/vendor/modernizr.min.js'
-			},
-			foundation: {
-				src: [
-					'build/assets/js/foundation.js'
-				],
-				dest: 'build/assets/js/foundation.min.js'
-			},
 			dist: {
 				src: [
 					'build/assets/js/app.js'

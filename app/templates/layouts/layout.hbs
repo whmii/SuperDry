@@ -3,23 +3,29 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width">
-		<title>SuperDry 匠 {% block title %}{% endblock %}</title>
-		{{ 
-		<link rel="stylesheet" type="text/css" href="assets/css/app.css">
-		{{ "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"
+		<title>SuperDry 匠 </title>
+		<link rel="stylesheet" href="{{assets}}/css/app.{{production}}.css">
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
+		
+		
 		<!-- TODO: Complete this project :) -->
+
+		{{#if donotindex}}
+			<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+		{{/if}}
+
 	</head>
 	<body>
 		<div class="wrap-page-navigation">
-			{% include "navigation" %}
+			{{> navigation}}
 		</div>
-		<div class="wrap-page-content page-{{ mixture.url }}">
+		<div class="wrap-page-content page-{{ basename }}">
 
-			{% block content %}{% endblock %}
+			{{> body}}
 		</div>
 		<div class="wrap-page-footer">
-			{% include "footer" %}
-			{% include "scripts" %}
+			{{> footer}}
+			{{> scripts}}
 		</div>
 	</body>
 </html>

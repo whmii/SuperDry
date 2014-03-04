@@ -1,6 +1,7 @@
-<nav>
-	<ul class="nav">
-		<li {% if mixture.url == "index" %}class="current"{% endif %}><a href="/">Home</a></li>
-		<li {% if mixture.url == "model" %}class="current"{% endif %}><a href="/model">Model</a></li>
-	</ul>
-</nav>
+<ul>
+	{{#each pages}}
+		<li{{#is page.dest this.dest}} class="active"{{/is}}>
+			<a href="{{relative page.dest this.dest}}">{{data.title}}</a>
+		</li>
+	{{/each}}
+</ul>

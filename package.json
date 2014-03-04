@@ -9,9 +9,6 @@
 		"name": "Will H McMahan",
 		"url": "http://mcmahan.me"
 	},
-	"licenses": {
-		"type": "MIT",
-	},
 	"dependencies": {},
 	"devDependencies": {
 		"grunt": "~0.4.1",
