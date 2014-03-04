@@ -2,6 +2,7 @@
 .DS_Store?
 
 lib-cov
+
 *.seed
 *.log
 *.csv
@@ -9,6 +10,9 @@ lib-cov
 *.out
 *.pid
 *.gz
+*.rar
+
+build
 
 pids
 logs
@@ -17,7 +21,8 @@ results
 npm-debug.log
 node_modules/
 node_modules/*
+/node_modules
 
 .sass-cache
 .sass-cache/*
-/node_modules
+.grunt

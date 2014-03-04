@@ -1,5 +1,6 @@
 module.exports = function(grunt) {
 
+
 	grunt.initConfig({
 
 		pkg: grunt.file.readJSON('package.json'),
@@ -10,7 +11,7 @@ module.exports = function(grunt) {
 					style: 'expanded'
 				},
 				files: {
-					'assets/css/app.css': 'assets/sass/app.sass'
+					'build/assets/css/app.css': 'app/assets/sass/app.scss'
 				}
 			}
 		},
@@ -20,37 +21,72 @@ module.exports = function(grunt) {
 				browsers: ['last 2 version']
 			},
 			single_file: {
-				src: 'assets/css/app.css',
-				dest: 'assets/css/app.pf.css'
+				src: 'build/assets/css/app.css',
+				dest: 'build/assets/css/app.pf.css'
 			}
 		},
 
 		cssmin: {
 			combine: {
 				files: {
-					'assets/css/app.min.css': ['assets/css/app.pf.css']
+					'build/assets/css/app.min.css': ['build/assets/css/app.pf.css']
 				}
 			}
 		},
 
 		jshint: {
-			beforeconcat: ['assets/js/*.js']
+			beforeconcat: ['build/assets/js/*.js']
 		},
 
 		concat: {
+			jquery: {
+				src: [
+					'app/assets/js/vendor/jquery.js'
+				],
+				dest: 'build/assets/js/vendor/jquery.js'
+			},
+			modernizer: {
+				src: [
+					'app/assets/js/vendor/modernizr.js'
+				],
+				dest: 'build/assets/js/vendor/modernizr.js'
+			},
 			dist: {
 				src: [
-					'assets/js/libs/*.js',
-					'js/app.js'
+					// Libs if you're lazy
+					'app/assets/js/libs/*.js',
+					'app/assets/js/app.js'
 				],
-				dest: 'assets/js/build/app.js'
+				dest: 'build/assets/js/app.js'
 			}
+
 		},
 
 		uglify: {
-			build: {
-				src: 'assets/js/build/app.js',
-				dest: 'assets/js/build/app.min.js'
+			jquery: {
+				src: [
+					'build/assets/js/vendor/jquery.js'
+				],
+				dest: 'build/assets/js/vendor/jquery.min.js'
+			},
+
+			modernizer: {
+				src: [
+					'build/assets/js/vendor/modernizr.js'
+				],
+				dest: 'build/assets/js/vendor/modernizr.min.js'
+			},
+			foundation: {
+				src: [
+					'build/assets/js/foundation.js'
+				],
+				dest: 'build/assets/js/foundation.min.js'
+			},
+			dist: {
+				src: [
+					'build/assets/js/app.js'
+				],
+				dest: 'build/assets/js/app.min.js'
 			}
 		},
 
@@ -58,56 +94,212 @@ module.exports = function(grunt) {
 			dynamic: {
 				files: [{
 					expand: true,
-					cwd: 'assets/img/',
+					cwd: 'app/assets/images/',
 					src: ['**/*.{png,jpg,gif}'],
-					dest: 'assets/img/build/'
+					dest: 'build/assets/images/'
 				}]
 			}
 		},
 
 		watch: {
 			options: {
-				livereload: true,
+				spawn: true
 			},
 			scripts: {
-				files: ['assets/js/*.js'],
-				tasks: ['concat', 'uglify', 'jshint'],
-				options: {
-					spawn: false,
-				}
+				files: ['app/assets/js/*.js'],
+				tasks: ['concat', 'uglify', 'jshint']
 			},
 			css: {
-				files: ['assets/css/*.scss'],
-				tasks: ['sass', 'autoprefixer', 'cssmin'],
-				options: {
-					spawn: false,
-				}
+				files: ['app/assets/sass/**/*'],
+				tasks: ['sass', 'autoprefixer', 'cssmin']
 			},
 			images: {
-				files: ['assets/images/**/*.{png,jpg,gif}', 'assets/images/*.{png,jpg,gif}'],
-				tasks: ['imagemin'],
-				options: {
-					spawn: false,
-				}
+				files: ['app/assets/images/**/*.{png,jpg,gif,svg}', 'app/assets/images/*.{png,jpg,gif,svg}'],
+				tasks: ['imagemin', 'copy:svg']
+			},
+			html: {
+				files: ['app/templates/**/*'],
+				tasks: ['assemble']
 			}
 		},
 
 		connect: {
 			server: {
 				options: {
-					port: 8000,
-					base: './'
+					port: 9000,
+					base: 'build/',
+					open: true
 				}
 			}
 		},
 
+		assemble: {
+			options: {
+				flatten: true,
+				layoutdir: 'app/templates/layouts',
+				layout: 'layout.hbs',
+				partials: 'app/templates/includes/*.hbs',
+				assets: 'app/assets',
+				production: 'pf'
+			},
+			pages: {
+				files: {
+					'build/': ['app/templates/pages/*.hbs' ]
+				},
+				options: {
+					assets: 'build/assets'
+				}
+			}
+		},
+
+		copy: {
+			humans: {
+				src: 'app/humans.txt',
+				dest: 'build/humans.txt',
+			},
+			
+			humans: {
+				src: 'app/robots.txt',
+				dest: 'build/robots.txt',
+			},
+
+			favicon: {
+				src: 'app/favicon.ico',
+				dest: 'build/favicon.ico',
+			},
+
+			htaccess: {
+				src: 'app/htaccess',
+				dest: 'build/.htaccess',
+			},
+
+			fonts: {
+				expand: true,
+				flatten: true,
+				src: ['app/assets/fonts/**'],
+				dest: 'build/assets/fonts/',
+				filter: 'isFile'
+			},
+
+			svg: {
+				expand: true,
+				flatten: true,
+				src: ['app/assets/images/**.svg'],
+				dest: 'build/assets/images/',
+				filter: 'isFile'
+			},
+		},
+
+		clean: {
+			build: 'build/'
+		},
+
+		ftpush: {
+			development: {
+				auth: {
+					host: 'exampledevelopment.com',
+					port: 21,
+					authKey: 'key1'
+				},
+				src: 'build/',
+				dest: 'html/', // Target public directory
+				exclusions: ['build/**/.DS_Store', 'build/**/Thumbs.db', 'build/tmp'],
+				simple: false,
+				useList: false
+			},
+			production: {
+				auth: {
+					host: 'exampleproduction.com',
+					port: 21,
+					authKey: 'key2'
+				},
+				src: 'build/',
+				dest: 'html/', // Target public directory
+				exclusions: ['build/**/.DS_Store', 'build/**/Thumbs.db', 'build/tmp'],
+				simple: false,
+				useList: false
+			}
+		},
+
+		push: {
+			options: {
+				files: ['package.json'],
+				updateConfigs: [],
+				releaseBranch: false,
+				add: true,
+				addFiles: ['.'],
+				commit: true,
+				commitMessage: 'Release v%VERSION%',
+				commitFiles: [' --all'], // '-a' for all files
+				createTag: false,
+				push: true,
+				pushTo: 'origin',
+				npm: false,
+				gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d' // options to use with '$ git describe'
+			}
+		}
+
+
 	});
 
 	require('load-grunt-tasks')(grunt);
+	grunt.loadNpmTasks('assemble');
 
+	grunt.registerTask('default', [
+		'concat',
+		'uglify',
+		'sass',
+		'autoprefixer',
+		'cssmin',
+		'assemble',
+		'imagemin',
+		'copy'
+	]);
+	
+	grunt.registerTask('css', [
+		'sass',
+		'autoprefixer',
+		'cssmin'
+	]);
+	
+	grunt.registerTask('local', [
+		'concat',
+		'uglify',
+		'sass',
+		'autoprefixer',
+		'cssmin',
+		'assemble',
+		'imagemin',
+		'copy',
+		'connect',
+		'watch'
+	]);
 
-	grunt.registerTask('default', ['concat', 'uglify', 'sass', 'imagemin']);
-	grunt.registerTask('css', ['sass', 'autoprefixer', 'cssmin']);
-	grunt.registerTask('dev', ['liquid','connect', 'watch']);
+	grunt.registerTask('build', [
+		'concat',
+		'uglify',
+		'sass',
+		'autoprefixer',
+		'cssmin',
+		'assemble',
+		'imagemin',
+		'copy'
+	]);
 
+	grunt.registerTask('save', [
+		'push'
+	]);
+
+	grunt.registerTask('development', [
+		'clean',
+		'build',
+		'ftpush:development'
+	]);
+
+	grunt.registerTask('deploy', [
+		'push',
+		'clean',
+		'build',
+		'ftpush:production'
+	]);
 };
