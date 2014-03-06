@@ -212,6 +212,7 @@ module.exports = function(grunt) {
 	});
 
 	require('load-grunt-tasks')(grunt);
+	var helpers = require('handlebars-helpers');
 	grunt.loadNpmTasks('assemble');
 
 	grunt.registerTask('default', [

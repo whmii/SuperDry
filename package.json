@@ -1,35 +1,41 @@
 {
-	"name": "Superdry",
-	"version": "0.0.4",
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/whmii/SuperDry"
-	},
-	"author": {
-		"name": "Will H McMahan",
-		"url": "http://mcmahan.me"
-	},
-	"dependencies": {},
-	"devDependencies": {
-		"grunt": "~0.4.1",
-		"grunt-contrib-uglify": "~0.2.2",
-		"grunt-contrib-concat": "~0.3.0",
-		"grunt-contrib-sass": "~0.7.2",
-		"grunt-contrib-imagemin": "~0.4.0",
-		"grunt-contrib-watch": "~0.5.3",
-		"grunt-contrib-connect": "~0.5.0",
-		"grunt-autoprefixer": "~0.4.1",
-		"grunt-contrib-cssmin": "~0.7.0",
-		"grunt-contrib-jshint": "~0.7.2",
-		"grunt-contrib-copy": "~0.5.0",
-		"assemble": "~0.4.1",
-		"grunt-connect-rewrite": "~0.2.1",
-		"grunt-ftpush": "~0.3.3",
-		"grunt-push-release": "~0.1.1",
-		"grunt-contrib-clean": "~0.5.0",
-		"load-grunt-tasks": "~0.3.0"
-	},
-	"engines": {
-		"node": ">=0.8.0"
-	}
+  "name": "Superdry",
+  "version": "0.0.4",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/whmii/SuperDry"
+  },
+  "author": {
+    "name": "Will H McMahan",
+    "url": "http://mcmahan.me"
+  },
+  "dependencies": {
+    "assemble-contrib-sitemap": "~0.2.1",
+    "handlebars-helpers": "~0.5.2"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-sass": "~0.7.2",
+    "grunt-contrib-imagemin": "~0.4.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-connect": "~0.5.0",
+    "grunt-autoprefixer": "~0.4.1",
+    "grunt-contrib-cssmin": "~0.7.0",
+    "grunt-contrib-jshint": "~0.7.2",
+    "grunt-contrib-copy": "~0.5.0",
+    "assemble": "~0.4.1",
+    "grunt-connect-rewrite": "~0.2.1",
+    "grunt-ftpush": "~0.3.3",
+    "grunt-push-release": "~0.1.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "load-grunt-tasks": "~0.3.0"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "keywords": [
+    "handlebars-helper-rel"
+  ]
 }
