@@ -6,7 +6,7 @@
 
 .button
 	display: inline-block
-	@include component()
+	@include component($margin: false)
 	@include transition()
 	background-color: $action
 	color: $base-bg
@@ -22,4 +22,4 @@
 
 .button.large
 	display: inline-block
-	@include component(2)
+	@include component(2,$margin: false)
