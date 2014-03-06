@@ -1,9 +1,9 @@
 <nav>
 	<ul>
-		{{#each pages}}
+		{{#withSort pages "data.navorder"}}
 			<li{{#is ../page.dest this.dest}} class="active"{{/is}}>
-				<a href="{{relative ../page.dest this.dest}}">{{data.title}}</a>
+				<a href="{{relative ../page.dest this.dest}}">{{ capitalizeFirst data.title}}</a>
 			</li>
-		{{/each}}
+		{{/withSort}}
 	</ul>
 </nav>
