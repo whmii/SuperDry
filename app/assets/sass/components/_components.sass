@@ -112,6 +112,15 @@ $base-component-ratio: component-ratio()
 .flush-top
 	margin-top: 0 !important
 
+@if $render-helper-classes == true
+	.coral
+		@extend coral
+	.reef
+		@extend reef
+	.island
+		@extend island
+	.continent
+		@extend continent
 
 // Style Helpers
 
