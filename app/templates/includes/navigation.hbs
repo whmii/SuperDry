@@ -1,15 +1,11 @@
 <ul>
 	{{#each pages}}
-		
-
 		<li{{#is page.dest this.dest}} class="active"{{/is}}>
 			<a href="
-				{{#is this.basename "index"}}
-					/
-				{{else}}
+				{{#is this.basename "index"}} / {{else}}
 					{{this.filename}}
 				{{/is}}
-				">{{data.title}}</a> Pagedest {{page.dest}} This dest {{this.dest}}
+				">{{data.title}}</a> Pagedest "{{page.dest}}" This dest "{{this.dest}}"
 		</li>
 	{{/each}}
 </ul>
