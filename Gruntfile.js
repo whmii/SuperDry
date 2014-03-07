@@ -35,6 +35,9 @@ module.exports = function(grunt) {
 		},
 
 		jshint: {
+			options: {
+				 browser: true
+			},
 			beforeconcat: ['build/assets/js/*.js']
 		},
 
@@ -75,7 +78,7 @@ module.exports = function(grunt) {
 				spawn: true
 			},
 			scripts: {
-				files: ['app/assets/js/*.js'],
+				files: ['app/assets/js//**/*'],
 				tasks: ['concat', 'uglify', 'jshint']
 			},
 			css: {
@@ -233,6 +236,7 @@ module.exports = function(grunt) {
 	]);
 	
 	grunt.registerTask('local', [
+		'clean',
 		'concat',
 		'uglify',
 		'sass',
