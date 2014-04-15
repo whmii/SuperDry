@@ -1,128 +1,156 @@
-
 // Core Component Styles
 // ============================================================
 // These are styles for "components" which could be used to build buttons, alerts, tags, breadcrumbs and more!
 // Components have 2 parts
-// • The Factor determines the spacing and size of the unit (indipendent of font size) 
+// • The Factor determines the spacing and size of the unit (indipendent of font size)
 // • The Ratio which determines the reltionship between vertical and horizontal spacing
-
 
 // ========= Component Settings =========
 
-$component-unit-vert: $base-line-height
-$component-unit-horz: $column-gutter
+$component-unit-vert: $base-line-height;
+$component-unit-horz: $column-gutter;
 
 // Factor
 
 // Use factors to increase or decrease spacing in and around a component
 // Use whole numbers for factors
 
-$base-component-factor: 0 !default
-$base-factor-modifier: 0.5 !default
+$base-component-factor: 0 !default;
+$base-factor-modifier: 0.5 !default;
 
-@function component-factor($factor: $base-component-factor, $modifier: $base-factor-modifier)
-	@if $factor == 0
-		@return (1)
-	@if $factor > 0
-		@if $factor < 1
-			@return ($factor * $modifier) //optional entry of negitive values
-		@else
-			@return ($factor * $modifier + 1)
-	@if $factor < 0
-		$value: abs($factor) / 2 * $modifier +1
-		@return (1 / $value)
-
+@function component-factor($factor: $base-component-factor, $modifier: $base-factor-modifier) {
+	@if $factor == 0 {
+		@return 1;
+	}
+	@if $factor > 0 {
+		@if $factor < 1 {
+			@return $factor * $modifier;
+		}
+		@else {
+			@return $factor * $modifier + 1;
+		}
+	}
+	@if $factor < 0 {
+		$value: abs($factor) / 2 * $modifier + 1;
+		@return 1 / $value;
+	}
+}
 
 // Ratio
 
-// $column-gutter  /  $base-line-height
+// $column-gutter / $base-line-height
 
-@function component-ratio($vertical: $component-unit-vert, $horizontal: $component-unit-horz)
-	@if unit($horizontal) != "rem" 	// Sanity check in case margins were not defined in rems
-		$horizontal: rem-calc($horizontal)
-	@return (strip-unit($vertical)/strip-unit($horizontal))
+@function component-ratio($vertical: $component-unit-vert, $horizontal: $component-unit-horz) {
+	@if unit($horizontal) != "rem" {
+		$horizontal: rem-calc($horizontal);
+	}
+	@return strip-unit($vertical) / strip-unit($horizontal);
+}
 
-$base-component-ratio: component-ratio()
-
+$base-component-ratio: component-ratio();
 
 // ========= Component Mixin =========
 
 // @mixin component( $orientation: $default, $factor: $base-component-factor, $ratio: ,$margin:true)
 
-@mixin component($factor: $base-component-factor, $ratio: $base-component-ratio, $margin: true)
-	$local-factor: component-factor($factor)
-	$horz: $component-unit-horz * $local-factor
-	padding-left: $horz
-	padding-right: $horz
-	@if $ratio != $base-component-ratio
-		$local-factor: component-factor($factor)
-		$horz: $component-unit-horz * $local-factor
-		$vert: ($component-unit-horz * $ratio) * $local-factor
-		padding-top: $vert
-		padding-bottom: $vert
-		@if $margin == auto
-		@if $margin != auto
-			@if $margin != false
-				@if $margin != top
-					margin-bottom: $vert
-				@if $margin != bottom
-					margin-top: $vert
-		@if $margin == false
-			margin-top: 0
-			margin-bottom: 0
-	@else
-		$vert: ($component-unit-horz * component-ratio()) * $local-factor
-		padding-top: $vert
-		padding-bottom: $vert
-		@if $margin == auto
-		@if $margin != auto
-			@if $margin != false
-				@if $margin != top
-					margin-bottom: $vert
-				@if $margin != bottom
-					margin-top: $vert
-		@if $margin == false
-			margin-top: 0
-			margin-bottom: 0
-
+@mixin component($factor: $base-component-factor, $ratio: $base-component-ratio, $margin: true) {
+	$local-factor: component-factor($factor);
+	$horz: $component-unit-horz * $local-factor;
+	padding-left: $horz;
+	padding-right: $horz;
+	@if $ratio != $base-component-ratio {
+		$local-factor: component-factor($factor);
+		$horz: $component-unit-horz * $local-factor;
+		$vert: $component-unit-horz * $ratio * $local-factor;
+		padding-top: $vert;
+		padding-bottom: $vert;
+		@if $margin == auto {}
+		@if $margin != auto {
+			@if $margin != false {
+				@if $margin != top {
+					margin-bottom: $vert;
+				}
+				@if $margin != bottom {
+					margin-top: $vert;
+				}
+			}
+		}
+		@if $margin == false {
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+	}
+	@else {
+		$vert: $component-unit-horz * component-ratio() * $local-factor;
+		padding-top: $vert;
+		padding-bottom: $vert;
+		@if $margin == auto {}
+		@if $margin != auto {
+			@if $margin != false {
+				@if $margin != top {
+					margin-bottom: $vert;
+				}
+				@if $margin != bottom {
+					margin-top: $vert;
+				}
+			}
+		}
+		@if $margin == false {
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+	}
+}
 
 // ========= Helper Styles =========
 
 // Spacing Helpers
 
-%coral
-	margin-top: $coral
-	margin-bottom: $coral
+%coral {
+	margin-top: $coral;
+	margin-bottom: $coral;
+}
 
-%reef
-	margin-top: $reef
-	margin-bottom: $reef
+%reef {
+	margin-top: $reef;
+	margin-bottom: $reef;
+}
 
-%island
-	margin-top: $island
-	margin-bottom: $island
+%island {
+	margin-top: $island;
+	margin-bottom: $island;
+}
 
-%continent
-	margin-top: $continent
-	margin-bottom: $continent
+%continent {
+	margin-top: $continent;
+	margin-bottom: $continent;
+}
 
-.flush-bottom
-	margin-bottom: 0 !important
+.flush-bottom {
+	margin-bottom: 0 !important;
+}
 
-.flush-top
-	margin-top: 0 !important
+.flush-top {
+	margin-top: 0 !important;
+}
 
-@if $render-helper-classes == true
-	.coral
-		@extend %coral
-	.reef
-		@extend %reef
-	.island
-		@extend %island
-	.continent
-		@extend %continent
+@if $render-helper-classes == true {
+	.coral {
+		@extend %coral;
+	}
+	.reef {
+		@extend %reef;
+	}
+	.island {
+		@extend %island;
+	}
+	.continent {
+		@extend %continent;
+	}
+}
 
 // Style Helpers
 
-%radius
-	border-radus: $global-radius
+%radius {
+	border-radus: $global-radius;
+}
