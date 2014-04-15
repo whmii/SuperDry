@@ -1,20 +1,21 @@
 /* TEAM */
-    
-    Company: 
+		
+	Company: 
 	
 	Designer: 
-	Contact:  [at] 
+	Contact:	[at] 
 
 	Front End Developer: 
-    Contact:  [at] 
+	Contact:	[at] 
 
 
 /* SITE */
-  
-  Standards: HTML5, CSS3
-  Components: jQuery, Sass, Autoprefixer, Assemble, Grunt, Node
-  Software: Sublime Text, Git
+	
+	Standards: HTML5, CSS3
+	Components: jQuery, Sass, Autoprefixer, Assemble, Grunt, Node
+	Software: Sublime Text, Git
 
 
-/* SuperDry was made by Will McMahan @WHMII and derived with portions of Foundation by ZURB and Sassaparilla by fffunction, for Mixture */
-/* mcmahan.me */
+/* SuperDry was made by Will McMahan @WHMII and derived with portions of Foundation by ZURB and Sassaparilla by fffunction */
+
+/* http://mcmahan.me */
