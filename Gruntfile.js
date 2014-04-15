@@ -11,7 +11,7 @@ module.exports = function(grunt) {
 					style: 'expanded'
 				},
 				files: {
-					'build/assets/css/app.css': 'app/assets/sass/app.sass'
+					'build/assets/css/app.css': 'app/assets/sass/app.scss'
 				}
 			}
 		},
